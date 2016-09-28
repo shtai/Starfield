@@ -1,37 +1,42 @@
-//your code here
+Normal [] norms = new Normal[200];
 void setup()
 {
 	size(400,400);
-	frameRate(1);
+	frameRate(15);
+	for (int i=0; i<norms.length; i++)
+	{
+		norms [i] = new Normal();
+	}
 }
 void draw()
 {
 	noStroke();
-	fill(0,0,0);
+	fill(0,0,0,150);
 	rect(0,0,400,400);
-	Normal [] norms = new Normal[10];
-	for (int i; i<=norms.length; i++)
+	for (int i=0; i<norms.length; i++)
 	{
-		norms [i] = new Normal();
-		norms.move(i);
-		norms.show(i);
+		norms[i].move();
+		norms[i].show();
+		norms[i].normalSize=norms[i].normalSize+0.5;
 	}
+	
 	
 }
 class Normal
 {
-	double normalX, normalY, normalSpeed, normalAngle, normalMoveX, normalMoveY;
+	double normalX, normalY, normalSpeed, normalAngle, normalMoveX, normalMoveY, normalSize;
 	int normalColor;
 
 	Normal()
 	{
-		normalX=(Math.random()*400);
-		normalY=(Math.random()*400);
-		normalSpeed=0.1;
-		normalAngle=(Math.random()*Math.PI);
+		normalX=200;
+		normalY=200;
+		normalSpeed=10;
+		normalAngle=(Math.random()*2*Math.PI);
 		normalMoveX=normalSpeed*Math.cos(normalAngle);
 		normalMoveY=normalSpeed*Math.sin(normalAngle);
-		normalColor = color(100,100,100);
+		normalColor = color(200,00,0,100);
+		normalSize=10;
 	}
 
 	void move()
@@ -42,14 +47,15 @@ class Normal
 
 	void show()
 	{
-		fill(255,255,0);
-		ellipse((float)normalX, (float)normalY, 10,10);
+		fill(normalColor);
+		ellipse((float)normalX, (float)normalY, (float)normalSize, (float)normalSize);
 	}
 
 }
 interface Particle
 {
-	//your code here
+	public void show();
+	public void move();
 }
 class Oddball //uses an interface
 {
