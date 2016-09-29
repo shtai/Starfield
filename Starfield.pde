@@ -1,4 +1,4 @@
-Normal [] norms = new Normal[200];
+Normal [] norms = new Normal[300];
 void setup()
 {
 	size(400,400);
@@ -35,7 +35,7 @@ class Normal
 		normalAngle=(Math.random()*2*Math.PI);
 		normalMoveX=normalSpeed*Math.cos(normalAngle);
 		normalMoveY=normalSpeed*Math.sin(normalAngle);
-		normalColor = color(200,00,0,100);
+		normalColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255), 100);
 		normalSize=10;
 	}
 
