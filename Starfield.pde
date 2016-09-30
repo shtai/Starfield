@@ -8,6 +8,7 @@ void setup()
 		norms [i] = new Normal();
 	}
 }
+
 void draw()
 {
 	noStroke();
@@ -18,9 +19,14 @@ void draw()
 		norms[i].move();
 		norms[i].show();
 		norms[i].normalSize=norms[i].normalSize+0.5;
+		if (norms[0].normalX < -50 || norms[0].normalX > 450 || norms[0].normalY < -50 || norms[0].normalY > 450)
+		{
+			for (i=0; i<norms.length; i++)
+			{
+				norms [i] = new Normal();
+			}
+		}
 	}
-	
-	
 }
 class Normal
 {
@@ -36,7 +42,7 @@ class Normal
 		normalMoveX=normalSpeed*Math.cos(normalAngle);
 		normalMoveY=normalSpeed*Math.sin(normalAngle);
 		normalColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255), 100);
-		normalSize=10;
+		normalSize=7;
 	}
 
 	void move()
