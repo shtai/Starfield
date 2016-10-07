@@ -1,4 +1,5 @@
 Particle [] sparkle = new Particle[300];
+
 void setup()
 {
 	size(400,400);
@@ -29,7 +30,6 @@ void draw()
 	{
 		sparkle[i].move();
 		sparkle[i].show();
-		
 
 		if (((Normal)sparkle[0]).normX < -50 || ((Normal)sparkle[0]).normX > 450 || ((Normal)sparkle[0]).normY < -50 || ((Normal)sparkle[0]).normY > 450)
 		{
