@@ -5,7 +5,18 @@ void setup()
 	frameRate(15);
 	for (int i=0; i<sparkle.length; i++)
 	{
-		sparkle [i] = new Normal();
+		if (i%100==0)
+		{
+			sparkle[i] = new Jumbo();
+		}
+		else if (i%30==0)
+		{
+			sparkle[i] = new Oddball();
+		}
+		else
+		{
+			sparkle [i] = new Normal();
+		}
 	}
 }
 
@@ -18,16 +29,26 @@ void draw()
 	{
 		sparkle[i].move();
 		sparkle[i].show();
-		//sparkle[i].normSize += 0.5;
-		/*if (sparkle[0].normX < -50 || sparkle[0].normX > 450 || sparkle[0].normY < -50 || sparkle[0].normY > 450)
+		
+
+		if (((Normal)sparkle[0]).normX < -50 || ((Normal)sparkle[0]).normX > 450 || ((Normal)sparkle[0]).normY < -50 || ((Normal)sparkle[0]).normY > 450)
 		{
 			for (i=0; i<sparkle.length; i++)
 			{
-				sparkle [i] = new Normal();
+				if (i%100==0)
+				{
+					sparkle[i] = new Jumbo();
+				}
+				else if (i%30==0)
+				{
+					sparkle[i] = new Oddball();
+				}
+				else
+				{
+					sparkle [i] = new Normal();
+				}
 			}
 		}
-		*/
-		
 	}
 }
 
@@ -39,7 +60,7 @@ interface Particle
 class Normal implements Particle
 {
 	double normX, normY, normAngle, normSpeed, normMoveX, normMoveY, normSize;
-	int partColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
+	int normColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 	Normal()
 	{
 		normX = 200;
@@ -59,7 +80,7 @@ class Normal implements Particle
 
 	public void show()
 	{
-		fill(255,0,0);
+		fill(normColor);
 		ellipse((float)normX, (float)normY, (float)normSize, (float)normSize);
 	}
 }
@@ -84,12 +105,16 @@ class Oddball implements Particle
 	}
 	public void show()
 	{
+		fill(oddColor);
 		ellipse((float)oddX, (float)oddY, (float)oddSize, (float)oddSize);
 	}
 }
-/*
-class Jumbo //uses inheritance
+
+class Jumbo extends Normal
 {
-	//your code here
+	Jumbo()
+	{
+		normSize = 15;
+	}
 }
-*/
+
